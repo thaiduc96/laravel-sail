@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+//
+Route::group(['prefix' => 'v1', 'middleware' => ['api']], function () {
+    include_once('item/auth.php');
+    include_once('item/location.php');
+    Route::group([ 'middleware' => ['check.permission.admin' ]], function () {
+        include_once('item/admin.php');
+        include_once('item/admin_group.php');
+        include_once('item/location.php');
+        include_once('item/product.php');
+        include_once('item/warehouse.php');
+    });
 });

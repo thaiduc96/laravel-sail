@@ -1,0 +1,38 @@
+[{
+    "router": "root",
+    "children": [{
+        "router": "dashboard",
+        "children": ["analysis"]
+    },
+        {
+            "router": "form",
+            "children": ["basicForm", "stepForm", "advanceForm"]
+        },
+        {
+            "router": "basicForm",
+            "name": "Authorization form",
+            "icon": "file-excel",
+            "authority": "queryForm"
+        },
+        {
+            "router": "antdv",
+            "path": "antdv",
+            "name": "Ant Design Vue",
+            "icon": "ant-design",
+            "link": "https://www.antdv.com/docs/vue/introduce-cn/"
+        },
+        {
+            "router": "document",
+            "path": "document",
+            "name": "Use documentation",
+            "icon": "file-word",
+            "link": "https://iczer.gitee.io/vue-antd-admin-docs/"
+        },
+        {
+            "router": "basicForm",
+            "name": "Authorization form",
+            "icon": "file-excel",
+            "authority": "queryForm"
+        }
+    ]
+}]

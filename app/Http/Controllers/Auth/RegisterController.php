@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Modules\AdminApi\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Api\Http\Requests\Auth\RegisterRequest;
-use App\Modules\Api\Http\Resources\UserResource;
-use App\Repositories\Facades\UserRepository;
+use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
 
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest  $request)
     {
         DB::beginTransaction();
         try {

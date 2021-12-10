@@ -42,10 +42,15 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        $this->renderable(function(\Exception $e, $request) {
+            return $this->handleException($request, $e);
+        });
     }
 
-    public function render($request, Throwable $exception)
+    public function handleException($request, Throwable $exception)
     {
+        dd($exception);
         if ($request->wantsJson()) {
             if ($exception instanceof ValidationException) {
                 $statusCode = Response::HTTP_UNPROCESSABLE_ENTITY;
@@ -112,11 +117,6 @@ class Handler extends ExceptionHandler
                 $statusCode = $exception->getCode();
                 $errorCode = $exception->getErrorCode();
                 $errorMessage = $exception->getMessage();
-            } else if ($exception instanceof AwsException) {
-                $statusCode = $exception->getStatusCode();
-                $errorCode = $exception->getAwsErrorCode();
-                $errorMessage = $exception->getMessage();
-                LogHelper::loggingAwsError($errorMessage);
             } else {
                 $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
                 $errorCode = ErrorCode::SERVER_ERROR;

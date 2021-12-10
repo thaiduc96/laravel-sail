@@ -25,8 +25,8 @@ class CreateAdminsTable extends Migration
             $table->uuid('admin_group_id');
             $table->foreign('admin_group_id')->references('id')->on('admin_groups')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->uuid('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouse_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->uuid('warehouse_id')->nullable();
+            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

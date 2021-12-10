@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\AdminApi\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Facades\AdminFacade;
 use App\Helpers\AuthHelper;
 use App\Http\Controllers\Controller;
-use App\Modules\Api\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Repositories\Facades\AdminRepository;
 
 
@@ -18,11 +18,11 @@ class LoginController extends Controller
         if ($token = AuthHelper::getGuardApi(GUARD_ADMIN_API)->attempt($credentials)) {
             $user = AdminRepository::with('adminGroup')->find(AuthHelper::getUserApiId(GUARD_ADMIN_API));
             if($user->status != STATUS_ACTIVE){
-                return $this->failedResponse(trans('message.block_account'));
+                $this->failedResponse(trans('message.block_account'));
             }
             return $this->successResponse(AdminFacade::getAdminLogin(GUARD_ADMIN_API,$token));
         }
-        return $this->failedResponse(trans('message.wrong_username_or_password'));
+        $this->failedResponse(trans('message.wrong_username_or_password'));
     }
 
     /**

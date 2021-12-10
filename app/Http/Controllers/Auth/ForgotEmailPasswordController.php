@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\AdminApi\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Facades\UserForgotPasswordFacade;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\SendCodeForgotPasswordRequest;
+use App\Http\Requests\Auth\VerifyCodeForgotPasswordByEmailRequest;
 use App\Mail\ForgotPassword;
-use App\Modules\Api\Http\Requests\Auth\SendCodeForgotPasswordRequest;
-use App\Modules\Api\Http\Requests\Auth\VerifyCodeForgotPasswordByEmailRequest;
 use App\Repositories\Facades\AdminRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;

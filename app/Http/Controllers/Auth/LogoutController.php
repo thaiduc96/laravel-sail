@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Modules\AdminApi\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Helpers\AuthHelper;
 use App\Http\Controllers\Controller;
-use App\Modules\Api\Http\Requests\Auth\LogoutRequest;
-use App\Repositories\Facades\DeviceTokenRepository;
+use App\Http\Requests\Auth\LogoutRequest;
 use Illuminate\Support\Facades\Auth;
 
 

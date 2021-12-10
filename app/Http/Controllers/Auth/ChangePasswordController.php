@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\AuthHelper;
 use App\Http\Controllers\Controller;
-use App\Modules\Api\Http\Requests\Auth\ChangePasswordRequest;
+use App\Http\Requests\Auth\ChangePasswordRequest;
 use App\Repositories\Facades\AdminRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
