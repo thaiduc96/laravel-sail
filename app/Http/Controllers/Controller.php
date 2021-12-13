@@ -18,10 +18,10 @@ class Controller extends BaseController
     protected function responseSuccessList($list, $model)
     {
         if (!empty(request()->page) or !empty(request()->limit)) {
-            $collectionName = "\App\Modules\AdminApi\Http\Resources\\$model\\" .$model . "Collection";
+            $collectionName = "\App\Http\Resources\\$model\\" .$model . "Collection";
             $data = new $collectionName($list);
         } else {
-            $resourceName =  "\App\Modules\AdminApi\Http\Resources\\$model\\" .$model . "Resource";
+            $resourceName =  "\App\Http\Resources\\$model\\" .$model . "Resource";
             $data = [
                 'data' => $resourceName::collection($list)
             ];

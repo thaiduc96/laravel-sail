@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\AdminPermissionFacade;
 use App\Repositories\Facades\AdminGroupRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Facades\AdminGroupFacade;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\AdminGroup\AdminGroupResource;
-use App\Http\Resources\AdminGroup\AdminGroupCollection;
 use App\Http\Requests\AdminGroup\CreateAdminGroupRequest;
 use App\Http\Requests\AdminGroup\UpdateAdminGroupRequest;
 
 class AdminGroupController extends Controller
 {
+    public function permission($groupId,Request $request)
+    {
+        if($request->isMethod('GET')){
+            $res = AdminPermissionFacade::filter($groupId,$request->all());
+            return $this->successResponse($res);
+        }else{
+            try {
+                AdminPermissionFacade::update($groupId,$request->permission_ids);
+            } catch (\Exception $e) {
+                throw $e;
+            }
+            return $this->successResponse(true);
+        }
+    }
+
     public function index(Request $request)
     {
         $res = AdminGroupFacade::filter($request->all());
@@ -34,13 +48,13 @@ class AdminGroupController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = AdminGroupFacade::create($request->all());
-            $data = AdminGroupFacade::find($data->id);
+            $data = AdminGroupFacade::create($request->only('name','description','status'));
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
             throw $ex;
         }
+        $data = AdminGroupFacade::find($data->id);
         return $this->successResponse(new AdminGroupResource($data));
     }
 
@@ -48,13 +62,13 @@ class AdminGroupController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = AdminGroupFacade::update($id, $request->all());
-            $data = AdminGroupFacade::find($data->id);
+            $data = AdminGroupFacade::update($id, $request->only('name','description','status'));
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
             throw $ex;
         }
+        $data = AdminGroupFacade::find($data->id);
         return $this->successResponse(new AdminGroupResource($data));
     }
 

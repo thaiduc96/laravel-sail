@@ -7,6 +7,7 @@ use App\Models\AdminGroup;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\Ward;
+use App\Models\Warehouse;
 use App\Repositories\Contracts\AdminContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -24,15 +25,10 @@ class AdminRepositoryEloquent extends BaseRepositoryEloquent implements AdminCon
         $prefix = DB::getTablePrefix();
         $query = $this->model
             ->leftJoin($prefix . AdminGroup::getTableName() . ' as ag', 'ag.id', Admin::getTableName() . '.admin_group_id')
-            ->leftJoin($prefix . District::getTableName() . ' as d', 'd.id', Admin::getTableName() . '.district_id')
-            ->leftJoin($prefix . Province::getTableName() . ' as p', 'p.id', Admin::getTableName() . '.province_id')
-            ->leftJoin($prefix . Ward::getTableName() . ' as w', 'w.id', Admin::getTableName() . '.ward_id')
+            ->leftJoin($prefix . Warehouse::getTableName() . ' as w', Admin::getTableName() . '.warehouse_id',  'w.id')
             ->select([
                 'ag.name as admin_group_name',
-                'd.name as district_name',
-                'p.name as province_name',
-                'w.name_with_type as ward_name',
-                'b.name as branch_name',
+                'w.name as warehouse_name',
                 Admin::getTableName() . '.*'
             ])
             ->filter($conditions)
@@ -45,7 +41,6 @@ class AdminRepositoryEloquent extends BaseRepositoryEloquent implements AdminCon
                     ->orWhere(Admin::getTableName() . '.name', 'ILIKE', "%" . $value . "%")
                     ->orWhere(Admin::getTableName() . '.email', 'ILIKE', "%" . $value . "%")
                     ->orWhere(Admin::getTableName() . '.phone', 'ILIKE', "%" . $value . "%")
-                    ->orWhere(Admin::getTableName() . '.address', 'ILIKE', "%" . $value . "%")
                     ->orWhere('ag.name', 'ILIKE', "%" . $value . "%")
                     ->orWhere('d.name', 'ILIKE', "%" . $value . "%")
                     ->orWhere('p.name', 'ILIKE', "%" . $value . "%");

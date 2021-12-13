@@ -27,5 +27,8 @@ Route::group(['prefix' => 'v1', 'middleware' => ['api']], function () {
         include_once('item/location.php');
         include_once('item/product.php');
         include_once('item/warehouse.php');
+        include_once('item/customer.php');
+        include_once('item/order.php');
+        include_once('item/provider.php');
     });
 });

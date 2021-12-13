@@ -3,6 +3,7 @@
 namespace App\Http\Requests\AdminGroup;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateAdminGroupRequest extends FormRequest
 {
@@ -24,6 +25,9 @@ class CreateAdminGroupRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|max:255|unique:admin_groups,name,NULL,deleted_at',
+            'description' => 'nullable|string',
+            'status' => ['required', Rule::in([STATUS_ACTIVE,STATUS_INACTIVE])],
         ];
     }
 }

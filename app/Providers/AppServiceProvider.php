@@ -46,6 +46,9 @@ class AppServiceProvider extends ServiceProvider
             'Menu',
             'MenuPermission',
             'AdminPermission',
+            'Customer',
+            'Order',
+            'Provider',
         ];
         foreach ($services as $service) {
             $fcd = 'App\\Facades\\' . $service . "Facade";
@@ -75,6 +78,9 @@ class AppServiceProvider extends ServiceProvider
             'Menu',
             'MenuPermission',
             'AdminPermission',
+            'Customer',
+            'Order',
+            'Provider',
         ];
 
         foreach ($repos as $name) {

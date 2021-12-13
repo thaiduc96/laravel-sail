@@ -32,7 +32,7 @@ class AdminController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = AdminFacade::create($request->all());
+            $data = AdminFacade::create($request->only('code','status','name','email','phone','address','province_id','district_id','ward_id','admin_group_id','password','branch_id'));
             $data = AdminFacade::find($data->id);
             DB::commit();
         } catch (\Exception $ex) {
@@ -46,7 +46,7 @@ class AdminController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = AdminFacade::update($id, $request->all());
+            $data = AdminFacade::update($id, $request->only('code','status','name','email','phone','address','province_id','district_id','ward_id','admin_group_id','password','branch_id'));
             $data = AdminFacade::find($data->id);
             DB::commit();
         } catch (\Exception $ex) {
