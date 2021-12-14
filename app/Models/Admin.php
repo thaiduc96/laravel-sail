@@ -79,14 +79,13 @@ class Admin extends Authenticatable implements JWTSubject
     protected $filterable = [
         'admin_group_id',
         'status',
-        'branch_id',
+        'warehouse_id',
     ];
 
     protected $filterLike = [
         'name',
         'email',
         'phone',
-        'address',
         'code',
     ];
 

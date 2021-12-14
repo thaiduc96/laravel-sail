@@ -50,7 +50,6 @@ class Handler extends ExceptionHandler
 
     public function handleException($request, Throwable $exception)
     {
-        dd($exception);
         if ($request->wantsJson()) {
             if ($exception instanceof ValidationException) {
                 $statusCode = Response::HTTP_UNPROCESSABLE_ENTITY;

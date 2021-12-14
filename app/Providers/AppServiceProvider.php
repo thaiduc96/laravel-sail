@@ -48,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
             'AdminPermission',
             'Customer',
             'Order',
+            'OrderItem',
             'Provider',
         ];
         foreach ($services as $service) {
@@ -80,6 +81,7 @@ class AppServiceProvider extends ServiceProvider
             'AdminPermission',
             'Customer',
             'Order',
+            'OrderItem',
             'Provider',
         ];
 

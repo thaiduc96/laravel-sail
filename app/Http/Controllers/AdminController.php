@@ -32,13 +32,13 @@ class AdminController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = AdminFacade::create($request->only('code','status','name','email','phone','address','province_id','district_id','ward_id','admin_group_id','password','branch_id'));
-            $data = AdminFacade::find($data->id);
+            $data = AdminFacade::create($request->only('code','status','name','email','phone','admin_group_id','password','warehouse_id'));
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
             throw $ex;
         }
+        $data = AdminFacade::find($data->id);
         return $this->successResponse(new AdminResource($data));
     }
 
@@ -46,13 +46,13 @@ class AdminController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = AdminFacade::update($id, $request->only('code','status','name','email','phone','address','province_id','district_id','ward_id','admin_group_id','password','branch_id'));
-            $data = AdminFacade::find($data->id);
+            $data = AdminFacade::update($id, $request->only('code','status','name','email','phone','admin_group_id','password','warehouse_id'));
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
             throw $ex;
         }
+        $data = AdminFacade::find($data->id);
         return $this->successResponse(new AdminResource($data));
     }
 
