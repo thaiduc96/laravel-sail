@@ -34,7 +34,7 @@ class OrderService
 
     public function find($id)
     {
-        $res = OrderRepository::with(['items','items.product','customer'])->findOrFail($id);
+        $res = OrderRepository::with(['items','items.product','customer','provider'])->findOrFail($id);
         return $res;
     }
 
@@ -52,6 +52,8 @@ class OrderService
                     'provider_confirm' => $item['provider_confirm'] ?? null,
                     'supply_chain_note' => $item['supply_chain_note'] ?? null,
                     'expected_delivery_time' => $item['expected_delivery_time'] ?? null,
+                    'quantity_sales_confirm' => $item['quantity_sales_confirm'] ?? null,
+                    'quantity_provider_confirm' => $item['quantity_provider_confirm'] ?? null,
                 ];
                 if (!empty($item['is_delete']) && filter_var($item['is_delete'], FILTER_VALIDATE_BOOLEAN) == true) {
                     OrderItemRepository::delete($item['id']);

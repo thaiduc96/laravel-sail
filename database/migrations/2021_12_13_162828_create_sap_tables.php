@@ -43,7 +43,7 @@ class CreateSapTables extends Migration
             $table->string("id");
             $table->string("name");
             $table->string("company_code");
-            $table->string("provider_name")->nullable();
+            $table->string("province_name")->nullable();
         });
     }
 

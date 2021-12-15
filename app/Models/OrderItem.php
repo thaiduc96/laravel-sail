@@ -24,6 +24,8 @@ class OrderItem extends Base
         'provider_confirm',
         'supply_chain_note',
         'expected_delivery_time',
+        'quantity_provider_confirm',
+        'quantity_sales_confirm',
     ];
 
     protected $filterable = [
@@ -50,11 +52,7 @@ class OrderItem extends Base
             }
         });
         static::updating(function ($model) {
-            if($model->product_id != $model->getOriginal('product_id')){
-                $product = ProductRepository::find($model->product_id);
-                $model->product_code = $product->code;
-                $model->product_name = $product->name;
-            }
+
         });
     }
 

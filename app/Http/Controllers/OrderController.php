@@ -32,7 +32,7 @@ class OrderController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = OrderFacade::create($request->only('customer_id','warehouse_id','items'));
+            $data = OrderFacade::create($request->only('provider_id','customer_id','warehouse_id','items'));
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
@@ -46,7 +46,7 @@ class OrderController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = OrderFacade::update($id, $request->only('customer_id','warehouse_id','items'));
+            $data = OrderFacade::update($id, $request->only('provider_id','customer_id','warehouse_id','items'));
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
