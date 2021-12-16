@@ -30,6 +30,7 @@ Route::group(['prefix' => 'v1', 'middleware' => ['api']], function () {
         include_once('item/customer.php');
         include_once('item/order.php');
         include_once('item/provider.php');
+        include_once('item/inventory.php');
         include_once('item/warehouse_provider.php');
     });
 });
