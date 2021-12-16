@@ -115,13 +115,59 @@ class PermissionSeeder extends Seeder
         $this->handleUpdate([
             [
                 'id' => Str::uuid(),
-                'name' => 'Danh sách kho',
+                'name' => 'Danh sách kho Nanoco',
                 'group_name' => 'Kho',
                 'route_name' => 'AdminApi.warehouses.index::',
                 'key_authority' => 'warehouse_list',
                 'menus' => json_encode(
                     [
                         'warehouse_list'
+                    ]
+                )
+            ],
+            [
+                'id' => Str::uuid(),
+                'name' => 'Danh sách kho NCC',
+                'group_name' => 'Kho',
+                'route_name' => 'AdminApi.warehouse-providers.index::',
+                'key_authority' => 'warehouse_provider_list',
+                'menus' => json_encode(
+                    [
+                        'warehouse_provider_list'
+                    ]
+                )
+            ],
+            [
+                'id' => Str::uuid(),
+                'name' => 'Tạo kho cho NCC',
+                'group_name' => 'Kho',
+                'route_name' => 'AdminApi.warehouse-providers.store::',
+                'key_authority' => 'warehouse_provider_create',
+                'menus' => json_encode(
+                    [
+                        'warehouse_provider_list',
+                    ]
+                )
+            ],[
+                'id' => Str::uuid(),
+                'name' => 'Sửa kho cho NCC',
+                'group_name' => 'Kho',
+                'route_name' => 'AdminApi.warehouse-providers.update::',
+                'key_authority' => 'warehouse_provider_update',
+                'menus' => json_encode(
+                    [
+                        'warehouse_provider_list'
+                    ]
+                )
+            ],[
+                'id' => Str::uuid(),
+                'name' => 'Xoá kho cho NCC',
+                'group_name' => 'Kho',
+                'route_name' => 'AdminApi.warehouse-providers.destroy::',
+                'key_authority' => 'warehouse_provider_destroy',
+                'menus' => json_encode(
+                    [
+                        'warehouse_provider_list'
                     ]
                 )
             ],

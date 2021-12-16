@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Province;
@@ -32,6 +31,16 @@ class OrderRepositoryEloquent extends BaseRepositoryEloquent implements OrderCon
             ])
             ->filter($conditions)
         ;
+
+        if ($value = @$conditions['search']) {
+            $query = $query->where(function ($q) use ($value) {
+                $q->where(
+                    Order::getTableName() . '.customer_name', 'ILIKE', "%" . $value . "%")
+                    ->orWhere('b.name', 'ILIKE', "%" . $value . "%")
+                ;
+            });
+        }
+
         return parent::filter($conditions,$with, $columns, $query);
     }
 

@@ -33,8 +33,14 @@ class MenuSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'name' => 'Danh sách kho',
+                'name' => 'Danh sách kho Nanoco',
                 'key_authority' => 'warehouse_list',
+                'parent_key_authority' => 'branch_manage',
+            ],
+            [
+                'id' => Str::uuid(),
+                'name' => 'Danh sách kho nhà cung cấp',
+                'key_authority' => 'warehouse_provider_list',
                 'parent_key_authority' => 'branch_manage',
             ],
             [
