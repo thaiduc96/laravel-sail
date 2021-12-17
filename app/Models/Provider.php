@@ -51,6 +51,12 @@ class Provider extends Base
         return $query->whereIn('sap_id', $value);
     }
 
+    public function filterNames($query, $value)
+    {
+        if (empty($value)) return $query;
+        return $query->whereIn('name', $value);
+    }
+
     public static function getTableName()
     {
         return (new self())->getTable();

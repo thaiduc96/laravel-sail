@@ -138,6 +138,7 @@ return [
     */
 
     'wrong_old_pw' => 'Mật khẩu cũ không đúng',
+    'data_not_exists' => ':field :attribute không tồn tại',
 
     'custom' => [
         'attribute-name' => [
@@ -346,5 +347,6 @@ return [
         'request_guarantee_cancel' => "Từ chối",
         'request_guarantee_approval' => "Duyệt",
         'started_at' => 'Thời gian bắt đầu',
+        'provider' => 'Nhà cung cấp'
     ],
 ];

@@ -45,7 +45,7 @@ class UploadHelper
         return $path;
     }
 
-    protected static function generateFileName($filename)
+    public static function generateFileName($filename)
     {
         $arr = explode('.', $filename);
         $ext = array_pop($arr);
