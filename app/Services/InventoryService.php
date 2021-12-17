@@ -25,9 +25,9 @@ class InventoryService
         $import->import($file);
 
         if (!empty($import->getRowErrors())) {
-//            Excel::store(new ExportInventory($import->getRowErrors()), $fileExportName, 's3', null, [
-//                'visibility' => 'public',
-//            ]);
+            Excel::store(new ExportInventory($import->getRowErrors()), $fileExportName, 's3', null, [
+                'visibility' => 'public',
+            ]);
         }
         return $import->toResponse([
             'error_file' => !empty($import->getRowErrors()) ? Storage::url($fileExportName) : null
